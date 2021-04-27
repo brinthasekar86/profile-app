@@ -50,7 +50,7 @@ function Edit() {
       console.log("TRIG");
       axios({
         method: "POST",
-       url: "https://userprofile27.herokuapp.com:5000/profile/post",
+       url: "https://userprofile27.herokuapp.com/profile/post",
       // url: "http://localhost:5000/profile/post",
         data: {
           name: name,
@@ -75,7 +75,7 @@ function Edit() {
       console.log("else");
       axios({
         method: "POST",
-        url: "https://userprofile27.herokuapp.com:5000/profile/post",
+        url: "https://userprofile27.herokuapp.com/profile/post",
         data: {
           name: name,
           age: age,
@@ -107,7 +107,7 @@ function Edit() {
       console.log("edit mode");
       axios({
         method: "GET",
-        url: `https://userprofile27.herokuapp.com:5000/profile/get/${id}`,
+        url: `https://userprofile27.herokuapp.com/profile/get/${id}`,
         //url: "http://localhost:5000/profile/get/${id}",
         withCredentials: true,
       })

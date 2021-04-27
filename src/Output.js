@@ -14,7 +14,7 @@ function Output() {
     console.log(id);
     axios({
       method: "GET",
-      url: `http://localhost:5000/profile/get/${id}`,
+      url: `https://userprofile27.herokuapp.com/profile/get/${id}`,
       withCredentials: true,
     })
       .then((res) => res.data)
