@@ -37,17 +37,18 @@ function Edit() {
   const handleSave = (e) => {
     setAlertMsg("");
     if (workExperience.length) {
-      console.log("yes");
+     // console.log("yes");
       workExperience.forEach((node) => {
         if (!node.start || !node.end || !node.title || !node.company) {
-          setAlertMsg("Please enter All the necessary fileds");
+          setAlertMsg(<div class="alert alert-danger">
+          <h6>"Please enter All the necessary fileds"</h6></div>);
         }
-        console.log(node);
+      //  console.log(node);
       });
-      console.log(alertmsg);
+   //   console.log(alertmsg);
     }
     if (name && age && !alertmsg) {
-      console.log("TRIG");
+      //console.log("TRIG");
       axios({
         method: "POST",
        url: "https://userprofile27.herokuapp.com/profile/post",
@@ -72,7 +73,7 @@ function Edit() {
         })
         .catch((err) => console.log(err));
     } else {
-      console.log("else");
+      //console.log("else");
       axios({
         method: "POST",
         url: "https://userprofile27.herokuapp.com/profile/post",
