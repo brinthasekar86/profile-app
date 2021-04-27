@@ -12,11 +12,6 @@ app.use(cors({ origin: "https://userprofile27.herokuapp.com", credentials: true 
 //app.use(cors({ origin: "http://localhost:3000", credentials: true }));
 
 
-// app.use(restify.CORS({
-//   origins: ['https://userprofile27.herokuapp.com'],   // defaults to ['*']
-//   credentials: true,                 // defaults to false
-//   headers: ['x-foo']                 // sets expose-headers
-// }));
 mongoose
   .connect(process.env.MONGODB_URI || 'mongodb+srv://brintha:stella56$@cluster0.ruicr.mongodb.net/myFirstDatabase?retryWrites=true&w=majority',
     {
