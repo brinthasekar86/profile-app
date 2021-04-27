@@ -7,7 +7,7 @@ const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 app.use(bodyParser.json({ limit: "50mb" }));
 
-app.use(cors({ origin: "http://localhost:3000", credentials: true }));
+app.use(cors({ origin: "https://userprofile27.herokuapp.com/", credentials: true }));
 mongoose
   .connect(
     `mongodb+srv://brintha:stella56$@cluster0.ruicr.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`,
