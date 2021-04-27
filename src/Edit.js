@@ -76,7 +76,6 @@ function Edit() {
       axios({
         method: "POST",
         url: "https://userprofile27.herokuapp.com:5000/profile/post",
-      // url: "http://localhost:5000/profile/post",
         data: {
           name: name,
           age: age,
