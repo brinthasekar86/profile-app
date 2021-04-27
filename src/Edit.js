@@ -129,6 +129,7 @@ function Edit() {
                 onChange={handleImage}
               ></input>
             </div>
+            
           </div>
           <div className="col-md-5 border-right">
             <div className="p-3 py-5">
