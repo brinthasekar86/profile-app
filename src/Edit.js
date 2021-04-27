@@ -15,6 +15,7 @@ function Edit() {
   const [workExperience, setWorkExperience] = useState([]);
   const { id } = useParams();
   const history = useHistory();
+  const [alertmsg, setAlertMsg] = useState("");
   const handleRedirect = () => {
     history.push(`/${editId}`);
     setShow(false);
@@ -34,10 +35,23 @@ function Edit() {
   };
 
   const handleSave = (e) => {
-    if (id) {
+    setAlertMsg("");
+    if (workExperience.length) {
+      console.log("yes");
+      workExperience.forEach((node) => {
+        if (!node.start || !node.end || !node.title || !node.company) {
+          setAlertMsg("Please enter All the necessary fileds");
+        }
+        console.log(node);
+      });
+      console.log(alertmsg);
+    }
+    if (name && age && !alertmsg) {
+      console.log("TRIG");
       axios({
         method: "POST",
-        url: "https://userprofile27.herokuapp.com/profile/post",
+       url: "https://userprofile27.herokuapp.com:5000/profile/post",
+      // url: "http://localhost:5000/profile/post",
         data: {
           name: name,
           age: age,
@@ -51,6 +65,7 @@ function Edit() {
         .then((res) => {
           console.log(res);
           if (res.id) {
+            setEditId(res.id);
             setShow(true);
           }
           //history.push(`/output/${res.id}`);
@@ -60,7 +75,8 @@ function Edit() {
       console.log("else");
       axios({
         method: "POST",
-        url: "https://userprofile27.herokuapp.com/profile/post",
+        url: "https://userprofile27.herokuapp.com:5000/profile/post",
+      // url: "http://localhost:5000/profile/post",
         data: {
           name: name,
           age: age,
@@ -77,7 +93,10 @@ function Edit() {
             setShow(true);
             setEditId(res.id);
           }
-
+      setAlertMsg( <div class="alert alert-danger">
+      <h6>Please fill all the necessary fields</h6>
+    </div>);
+     
           //history.push(`/output/${res.id}`);
         })
         .catch((err) => console.log(err));
@@ -89,7 +108,8 @@ function Edit() {
       console.log("edit mode");
       axios({
         method: "GET",
-        url: `https://userprofile27.herokuapp.com/profile/get/${id}`,
+        url: `https://userprofile27.herokuapp.com:5000/profile/get/${id}`,
+        //url: "http://localhost:5000/profile/get/${id}",
         withCredentials: true,
       })
         .then((res) => res.data)
@@ -105,6 +125,7 @@ function Edit() {
   }, [id]);
   return (
     <div>
+      {alertmsg ? <h1>{alertmsg}</h1> : ""}
       <div className="container rounded bg-white mt-5 mb-5">
         <div className="row">
           <div className="col-md-3 border-right">
@@ -118,6 +139,7 @@ function Edit() {
                   e.target.onerror = null;
                   e.target.src = "../user-male-circle.png";
                 }}
+                alt=""
               />
               <span className="font-weight-bold">{name}</span>{" "}
             </div>
@@ -138,6 +160,7 @@ function Edit() {
               </div>
               <div className="row mt-2">
                 <div className="col-md-12">
+                  {!name && alertmsg ? <p>Please Enter your name</p> : ""}
                   <label className="labels">Name</label>{" "}
                   <input
                     className="form-control"
@@ -151,24 +174,15 @@ function Edit() {
               <div className="row mt-3">
                 <div className="col-md-12">
                   <label className="labels">Age</label>{" "}
-                  {age ? (
-                    <input
-                      className="form-control"
-                      type="number"
-                      min="1"
-                      max="100"
-                      value={age}
-                      onChange={(e) => setAge(e.target.value)}
-                    ></input>
-                  ) : (
-                    <input
-                      className="form-control"
-                      type="number"
-                      min="1"
-                      max="100"
-                      onChange={(e) => setAge(e.target.value)}
-                    ></input>
-                  )}
+                  {!age && alertmsg ? <p>Please Enter your Age</p> : ""}
+                  <input
+                    className="form-control"
+                    type="number"
+                    min="1"
+                    max="100"
+                    value={age}
+                    onChange={(e) => setAge(e.target.value)}
+                  ></input>
                 </div>
               </div>
             </div>
@@ -210,6 +224,7 @@ function Edit() {
                             workExperience,
                             setWorkExperience
                           )}
+                          alertmsg={alertmsg}
                         />
                       ))
                     : ""}
@@ -282,7 +297,6 @@ function Edit() {
                   </Button>
                 </Modal.Footer>
               </Modal>
-              {console.log(workExperience)}
             </div>
           </div>
         </div>

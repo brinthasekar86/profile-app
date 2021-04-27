@@ -9,6 +9,11 @@ function Type(props) {
           <div className="row">
             <div className="col-10">
               <div className="form-group">
+                {props.node.start && !props.alertmsg ? (
+                  <p>please enter your start-date</p>
+                ) : (
+                  ""
+                )}
                 <label>Start Day</label>
                 <input
                   className="form-control"
@@ -27,6 +32,11 @@ function Type(props) {
             <div className="col-10">
               <div className="form-group">
                 <label>End Date</label>
+                {props.node.end && !props.alertmsg ? (
+                  <p>please enter your end-date</p>
+                ) : (
+                  ""
+                )}
                 <input
                   className="form-control"
                   type="date"
@@ -44,6 +54,11 @@ function Type(props) {
             <div className="col-10">
               <div className="form-group">
                 <label>Job Title</label>
+                {props.node.title && !props.alertmsg ? (
+                  <p>please enter your Title</p>
+                ) : (
+                  ""
+                )}
                 <input
                   className="form-control"
                   type="text"
@@ -64,6 +79,11 @@ function Type(props) {
             <div className="col-10">
               <div className="form-group">
                 <label>Company</label>
+                {props.node.company && !props.alertmsg ? (
+                  <p>please enter your company</p>
+                ) : (
+                  ""
+                )}
                 <input
                   className="form-control"
                   type="text"
