@@ -37,7 +37,7 @@ function Edit() {
     if (id) {
       axios({
         method: "POST",
-        url: "http://localhost:5000/profile/post",
+        url: "https://userprofile27.herokuapp.com/profile/post",
         data: {
           name: name,
           age: age,
@@ -60,7 +60,7 @@ function Edit() {
       console.log("else");
       axios({
         method: "POST",
-        url: "http://localhost:5000/profile/post",
+        url: "https://userprofile27.herokuapp.com/profile/post",
         data: {
           name: name,
           age: age,
@@ -89,7 +89,7 @@ function Edit() {
       console.log("edit mode");
       axios({
         method: "GET",
-        url: `http://localhost:5000/profile/get/${id}`,
+        url: `https://userprofile27.herokuapp.com/profile/get/${id}`,
         withCredentials: true,
       })
         .then((res) => res.data)
